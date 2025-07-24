@@ -1,0 +1,14 @@
+name: Example Using Reusable Workflow
+
+on:
+  push:
+    branches-ignore: [main]
+
+jobs:
+  call-reusable:
+    uses: ./.github/workflows/reusable-workflow.yml
+    with:
+      create-pr: true
+      pr-base: 'main'
+      pr-head: 'auto-pr-${{ github.ref_name }}'
+      pr-title: 'Automated PR for branch ${{ github.ref_name }}'
